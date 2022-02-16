@@ -31,47 +31,50 @@ import lombok.experimental.Accessors;
 public class CmsVideoLog implements Serializable {
     private static final long serialVersionUID = 1L;
 
-	/**id*/
-	@TableId(type = IdType.ASSIGN_ID)
+    /**id*/
+    @TableId(type = IdType.ASSIGN_ID)
     @ApiModelProperty(value = "id")
     private java.lang.String id;
-	/**视频ID*/
-	@Excel(name = "视频ID", width = 15)
+    /**视频ID*/
+    @Excel(name = "视频ID", width = 15)
     @ApiModelProperty(value = "视频ID")
     private java.lang.Integer videoId;
-	/**标题*/
-	@Excel(name = "标题", width = 15)
+    /**标题*/
+    @Excel(name = "标题", width = 15)
     @ApiModelProperty(value = "标题")
     private java.lang.String title;
-	/**总时长*/
-	@Excel(name = "总时长", width = 15)
+    /**总时长*/
+    @Excel(name = "总时长", width = 15)
     @ApiModelProperty(value = "总时长")
     private java.lang.Long totalTime;
-	/**当前播放时长*/
-	@Excel(name = "当前播放时长", width = 15)
+    /**当前播放时长*/
+    @Excel(name = "当前播放时长", width = 15)
     @ApiModelProperty(value = "当前播放时长")
     private java.lang.Long presentTime;
     /**当前播放时长*/
     @Excel(name = "当前播放时长", width = 15)
     @ApiModelProperty(value = "当前播放时长")
     private java.lang.String presentTimeStr;
-	/**是否跳转*/
-	@Excel(name = "是否跳转", width = 15, dicCode = "video_type")
-	@Dict(dicCode = "video_type")
+    /**是否跳转*/
+    @Excel(name = "是否跳转", width = 15, dicCode = "video_type")
+    @Dict(dicCode = "video_type")
     @ApiModelProperty(value = "是否跳转")
     private java.lang.Integer tzType;
-	/**跳转的url*/
-	@Excel(name = "跳转的url", width = 15)
+    /**跳转的url*/
+    @Excel(name = "跳转的url", width = 15)
     @ApiModelProperty(value = "跳转的url")
     private java.lang.String tzUrl;
-	/**观看用户*/
-	@Excel(name = "观看用户", width = 15)
+    /**观看用户*/
+    @Excel(name = "观看用户", width = 15)
     @ApiModelProperty(value = "观看用户")
     private java.lang.Integer userId;
-	/**观看日期*/
-	@Excel(name = "观看日期", width = 15, format = "yyyy-MM-dd")
-	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd")
+    /**观看日期*/
+    @Excel(name = "观看日期", width = 15, format = "yyyy-MM-dd")
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern="yyyy-MM-dd")
     @ApiModelProperty(value = "观看日期")
     private java.util.Date lookTime;
+    public static final String COL_DEL_FLAG = "del_flag";
+
+    public static final String USER_ID = "userId";
 }

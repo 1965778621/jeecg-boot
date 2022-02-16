@@ -8,6 +8,8 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.jeecg.common.api.vo.Result;
 import org.jeecg.modules.demo.cms.manager.entity.CmsBanner;
+import org.jeecg.modules.demo.cms.manager.entity.CmsVideo;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,7 +25,7 @@ import javax.annotation.Resource;
  * \
  *
  */
-@Api(tags = "轮播图")
+@Api(tags = "轮播图管理")
 @RestController
 @RequestMapping("/cms/client/cmsBanner")
 @Slf4j

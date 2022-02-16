@@ -37,7 +37,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.jeecg.common.aspect.annotation.AutoLog;
 
- /**
+/**
  * @Description: 视频
  * @Author: jeecg-boot
  * @Date:   2022-02-13
@@ -147,27 +147,27 @@ public class CmsVideoController extends JeecgController<CmsVideo, ICmsVideoServi
 		return Result.OK(cmsVideo);
 	}
 
-    /**
-    * 导出excel
-    *
-    * @param request
-    * @param cmsVideo
-    */
-    @RequestMapping(value = "/exportXls")
-    public ModelAndView exportXls(HttpServletRequest request, CmsVideo cmsVideo) {
-        return super.exportXls(request, cmsVideo, CmsVideo.class, "视频");
-    }
+	/**
+	 * 导出excel
+	 *
+	 * @param request
+	 * @param cmsVideo
+	 */
+	@RequestMapping(value = "/exportXls")
+	public ModelAndView exportXls(HttpServletRequest request, CmsVideo cmsVideo) {
+		return super.exportXls(request, cmsVideo, CmsVideo.class, "视频");
+	}
 
-    /**
-      * 通过excel导入数据
-    *
-    * @param request
-    * @param response
-    * @return
-    */
-    @RequestMapping(value = "/importExcel", method = RequestMethod.POST)
-    public Result<?> importExcel(HttpServletRequest request, HttpServletResponse response) {
-        return super.importExcel(request, response, CmsVideo.class);
-    }
+	/**
+	 * 通过excel导入数据
+	 *
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/importExcel", method = RequestMethod.POST)
+	public Result<?> importExcel(HttpServletRequest request, HttpServletResponse response) {
+		return super.importExcel(request, response, CmsVideo.class);
+	}
 
 }

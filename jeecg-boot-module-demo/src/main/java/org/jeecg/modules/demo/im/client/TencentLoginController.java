@@ -88,37 +88,37 @@ public class TencentLoginController {
 
     @PostMapping("/tencentSms")
     @ApiOperation(value = "腾讯云短信发送")
-    public Result tencentSms(@RequestParam("tel") String tel) {
-        String code = tencentCmsUtils.send(tel);
+    public Result tencentSms(@RequestBody TelDTO telDTO) {
+        String code = tencentCmsUtils.send(telDTO.getTel());
         // 获取到操作String的对象
         ValueOperations<String, String> stringR = redisTemplate.opsForValue();
         // 根据手机号进行查询
-        String phone = stringR.get(tel);
+        String phone = stringR.get(telDTO.getTel());
         // 如果手机号在redis中不存在的话才进行发送验证码操作
         if (StringUtils.isEmpty(phone)) {
             // 调用业务层接口 发送验证码
-            String sendSmsFlag = tencentCmsUtils.send(tel);
+            String sendSmsFlag = tencentCmsUtils.send(telDTO.getTel());
             if (sendSmsFlag.equals("0")) {
                 return Result.error525("短信发送频率限制！");
             } else {
                 // 发送成功之后往redis中存入该手机号以及验证码 并设置超时时间 15 分钟
-                stringR.set(tel, code, 15, TimeUnit.MINUTES);
+                stringR.set(telDTO.getTel(), code, 15, TimeUnit.MINUTES);
             }
             return Result.OK();
         } else {
-            return Result.error("该手机号：" + tel + " 剩余：" + redisTemplate.getExpire(tel) + "秒后可再次进行发送！");
+            return Result.error("该手机号：" + telDTO.getTel() + " 剩余：" + redisTemplate.getExpire(telDTO.getTel()) + "秒后可再次进行发送！");
         }
     }
 
     @PostMapping("/tencentCode")
     @ApiOperation(value = "腾讯云短信检测验证码是否过期！")
-    public Result redisCode(@RequestParam("tel") String tel, @RequestParam("code") String code) {
+    public Result redisCode(@RequestBody TelAndCodeDTO telAndCodeDTO) {
         // 获取到操作String的对象
         ValueOperations<String, String> stringR = redisTemplate.opsForValue();
         // 根据手机号进行查询
-        String redisCode = stringR.get(tel);
+        String redisCode = stringR.get(telAndCodeDTO.getTel());
         if (redisCode != null) {
-            if (!redisCode.equals(code)) {
+            if (!redisCode.equals(telAndCodeDTO.getCode())) {
                 return Result.error("验证码已过期，请重新获取！");
             }
         } else if(redisCode==null) {
